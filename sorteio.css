@@ -1,0 +1,11 @@
+.container {
+    width: 600px;
+    background-color: rgba(1, 255, 1, 0.815);
+
+}
+.opcoesSorteio {
+    border-radius: 5pt;
+    color: rgba(7, 7, 7, 0.76);
+    font-weight: bold;
+    
+}
