@@ -1,0 +1,24 @@
+
+.container {
+    background-color: rgba(7, 230, 230, 0.219);
+    border-radius: 1em;
+    text-align: center;
+
+}
+
+label, .titulo, .btn {
+    font-family: 'Piedra', cursive;
+    color: rgba(4, 97, 4, 0.808);
+    text-align: center;
+    margin-top: 1em;
+
+}
+
+.form-group, .inName {
+    width: 300px;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    
+
+}
