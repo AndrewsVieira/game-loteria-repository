@@ -25,11 +25,7 @@ const sorteio = {
         }
 
     },
-    // na função abaixo vamos preencher o objeto sequenciaSelecionada, com os números selecionados pelo usuário.
-    /*pushSequenciaSelecionada: function (element) {
-        this.sequenciaSelecionada.push(element);
-
-    },*/
+    
     gameover: false,
     containerElement: null,
 
