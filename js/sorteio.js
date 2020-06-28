@@ -54,6 +54,9 @@ const sorteio = {
 
         if (this.gameover) return false;
         if (this.sequenciaSelecionada.length <= 15) {
+            // a linha 58 é pra mudar a cor do background de cada bolinha ao serem cliccadas.
+            document.querySelector(`.div${posicao}`).style.backgroundColor = 'rgb(4, 97, 4, 0.808)'
+            // armazena os valores do que for clicado em no vetor de números selecionados.
             this.sequenciaSelecionada.push(posicao + 1);
 
         }
@@ -82,7 +85,7 @@ const sorteio = {
         console.log(this.sequenciaSorteio); 
 
         for (i in this.board) {
-            this.content += `<div onclick ="sorteio.makePlay(${i})">${this.board[i]}</div>`
+            this.content += `<div onclick ="sorteio.makePlay(${i})" class="div${i}">${this.board[i]}</div>`
         }
 
         this.containerElement.innerHTML = this.content;
