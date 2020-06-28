@@ -2,6 +2,12 @@ const sorteio = {
     board: [],
     sequenciaSorteio: [],
     sequenciaSelecionada: [],
+    qtdAposta: document.getElementById('qtdaposta'),
+
+    init: function (container) {
+        this.containerElement = container;
+
+    },
 
     // na função abaixo vamos preencher o objeto board, com os números de 1 a 60.
     pushBoard: function () {
@@ -25,20 +31,16 @@ const sorteio = {
         }
 
     },
-    
+
     gameover: false,
     containerElement: null,
 
-    init: function (container) {
-        this.containerElement = container;
-
-    },
     // função para compar vetores 
-    compararVetores: function(vetor1, vetor2) {
+    compararVetores: function (vetor1, vetor2) {
         let numSelecionados = vetor1;
         let numSorteados = vetor2;
         let cont = 0;
-    
+
         for (var i = 0; i < numSelecionados.length; i++) {
             for (var j = 0; j < numSorteados.length; j++) {
                 if (numSelecionados[Number(i)] == numSorteados[Number(j)]) {
@@ -53,19 +55,25 @@ const sorteio = {
     makePlay: function (posicao) {
 
         if (this.gameover) return false;
-        if (this.sequenciaSelecionada.length <= 15) {
-            // a linha 58 é pra mudar a cor do background de cada bolinha ao serem cliccadas.
-            document.querySelector(`.div${posicao}`).style.backgroundColor = 'rgb(4, 97, 4, 0.808)'
-            // armazena os valores do que for clicado em no vetor de números selecionados.
-            this.sequenciaSelecionada.push(posicao + 1);
+        if (this.qtdAposta.value >= 6 && this.qtdAposta.value <= 15) {
+            if (this.sequenciaSelecionada.length < this.qtdAposta.value) {
+                // a linha 58 é pra mudar a cor do background de cada bolinha ao serem cliccadas.
+                document.querySelector(`.div${posicao}`).style.backgroundColor = 'rgb(4, 97, 4, 0.808)'
+                // armazena os valores do que for clicado em no vetor de números selecionados.
+                this.sequenciaSelecionada.push(posicao + 1);
 
-        }
-        if (this.sequenciaSelecionada.length >=6 && this.sequenciaSelecionada.length <= 15) {
-            let cont = this.compararVetores(this.sequenciaSelecionada, this.sequenciaSorteio);
+            }
+            if (this.sequenciaSelecionada.length == this.qtdAposta.value) {
+                let cont = this.compararVetores(this.sequenciaSelecionada, this.sequenciaSorteio);
 
-            console.log(this.sequenciaSelecionada);
-            console.log(cont);
+                console.log(this.sequenciaSelecionada);
+                console.log(cont);
 
+            }
+
+        } else {
+            alert('Número inválido!')
+            this.qtdAposta.focus();
         }
 
     },
@@ -77,18 +85,19 @@ const sorteio = {
         this.gameover = false;
 
     },
-    
+
     content: '',
 
     draw: function () {
         console.log(this.board);
-        console.log(this.sequenciaSorteio); 
+        console.log(this.sequenciaSorteio);
 
         for (i in this.board) {
             this.content += `<div onclick ="sorteio.makePlay(${i})" class="div${i}">${this.board[i]}</div>`
         }
 
         this.containerElement.innerHTML = this.content;
+
     }
 
 }
