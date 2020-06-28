@@ -1,3 +1,0 @@
-criar os arquivos nessa pasta e fazer as alterações
-não alterar os arquivos na pasta principal
-depois de finalizar toda a edição levar os arquivos para a pasta principal, porem não modificar os nomes dos arquivos
