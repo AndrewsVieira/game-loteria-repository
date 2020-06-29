@@ -58,7 +58,7 @@ const sorteio = {
     makePlay: function (posicao) {
 
         if (this.gameover) return false;
-        if (this.qtdAposta.value > 7 && this.qtdAposta.value < 16) {
+        if (this.qtdAposta.value > 5 && this.qtdAposta.value < 16) {
             if (this.sequenciaSelecionada.length < this.qtdAposta.value) {
                 // a linha 58 é pra mudar a cor do background de cada bolinha ao serem cliccadas.
                 document.querySelector(`.div${posicao}`).style.backgroundColor = 'rgb(4, 97, 4, 0.808)'
@@ -72,9 +72,10 @@ const sorteio = {
 
                 console.log(this.sequenciaSelecionada);
                 console.log(cont);
+                this.gameover = true;
+
 
             }
-            this.gameover = true;
 
         } else {
             this.qtdAposta.focus();
@@ -102,7 +103,8 @@ const sorteio = {
     },
 
     mostarResultados: function () {
-        //if (this.gameover) return true;
+        if (this.gameover) return true;
+        
         
 
 
