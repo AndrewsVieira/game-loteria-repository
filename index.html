@@ -66,11 +66,13 @@
                     </tr>
                 </tbody>
             </table>
-            <div><a id="" class="btn btn" href="sorteio.html" role="button">jogar</a></div>
 
             <!--Não alterar a div.game-->
-        <div class="game mt-5"></div>
-        <!--Não alterar a div.game-->
+            <div class="game mt-5"></div>
+            <!--Não alterar a div.game-->
+
+            <div><a id="btnSortear" onclick="sorteio.mostarResultados()" class="btn btn" role="button">Sortear</a></div>
+
 
         </section>
     </div>
@@ -85,12 +87,11 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
-        <script src="js/sorteio.js"></script>
-
-        <script>
-            sorteio.init(document.querySelector('.game'));
-            sorteio.start();
-        </script>
+    <script src="js/sorteio.js"></script>
+    <script>
+        sorteio.init(document.querySelector('.game'));
+        sorteio.start();
+    </script>
 </body>
 
 </html>
