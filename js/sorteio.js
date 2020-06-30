@@ -105,27 +105,75 @@ const sorteio = {
 
     mostarResultados: function () {
         let resultados = document.querySelector('.resultados')
+        let custos = 0
+        let lucro = 0
+        
+        this.valorPremio = this.valorPremio.value
+        let premioPorAcertos = (this.valorPremio * this.cont)/6
+
         if (this.gameover == true) {
-            resultados.innerHTML = `${this.nome.value}, você acertou ${this.cont} Números`
+            resultados.innerHTML = `${this.nome.value}, você acertou ${this.cont} Números<br>`
 
             // mudar as cores dos números selecionados se acertou e do sorteio
             for (i in this.sequenciaSorteio) {
                 if (this.sequenciaSelecionada.includes(this.sequenciaSorteio[i])) {
-                    
-                    document.querySelector(`.div${this.sequenciaSorteio[i]}`).style.backgroundColor = 'green'
+
+                    document.querySelector(`.div${this.sequenciaSorteio[i] - 1}`).style.backgroundColor = 'green'
 
                 } else {
-                    document.querySelector(`.div${this.sequenciaSorteio[i]}`).style.backgroundColor = 'red'
+                    document.querySelector(`.div${this.sequenciaSorteio[i] - 1}`).style.backgroundColor = 'red'
 
                 }
 
             }
+            switch (this.qtdAposta.value) {
+                case '6':
+                    custos = 3.5
+                    break
+                case '7':
+                    custos = 24.5
+                    break
+                case '8':
+                    custos = 98.0
+                    break
+                case '9':
+                    custos = 294.0
+                    break
+                case '10':
+                    custos = 735.0
+                    break
+                case '11':
+                    custos = 1617.0
+                    break
+                case '12':
+                    custos = 3234.0
+                    break
+                case '13':
+                    custos = 6006.0
+                    break
+                case '14':
+                    custos = 10510.5
+                    break
+                case '15':
+                    custos = 17517.5
+                    break
 
-        } else {
+            }
+
+            lucro = premioPorAcertos - custos
+
+
+            resultados.innerHTML += `Seu prêmio foi de R$${premioPorAcertos}.<br>`
+            resultados.innerHTML += `Seus custos foram R$${custos}.<br>`
+            resultados.innerHTML += `Seu resultado foi de R$${lucro}.`
+
+            this.gameover = 'Game is over.'
+
+
+        } else if (this.gameover == false) {
             resultados.innerHTML = 'Você precisa completar todas as etapas antes de sortear!'
 
         }
-
     }
 
 }
