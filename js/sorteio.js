@@ -5,6 +5,7 @@ const sorteio = {
     qtdAposta: document.getElementById('qtdaposta'),
     nome: document.getElementById('nome'),
     valorPremio: document.getElementById('valorpremio'),
+    cont: 0,
 
     init: function (container) {
         this.containerElement = container;
@@ -24,14 +25,14 @@ const sorteio = {
         let max = 60;
         let min = 1;
         for (var i = 1; i <= 6; i++) {
-            let numSorteio = Math.floor(Math.random() * (max - min) + 1);            
+            let numSorteio = Math.floor(Math.random() * (max - min) + 1);
             while (this.sequenciaSorteio.includes(numSorteio)) {
                 numSorteio = Math.floor(Math.random() * (max - min) + 1);
             }
             this.sequenciaSorteio.push(numSorteio);
 
         }
-        console.log(`Sequecia do sorteio: ${this.sequenciaSorteio}`); 
+        console.log(`Sequecia do sorteio: ${this.sequenciaSorteio}`);
 
     },
 
@@ -61,19 +62,19 @@ const sorteio = {
         if (this.qtdAposta.value > 5 && this.qtdAposta.value < 16) {
             if (this.sequenciaSelecionada.length < this.qtdAposta.value) {
                 // a linha 58 é pra mudar a cor do background de cada bolinha ao serem cliccadas.
-                document.querySelector(`.div${posicao}`).style.backgroundColor = 'rgb(4, 97, 4, 0.808)'
+                document.querySelector(`.div${posicao}`).style.backgroundColor = 'blue'
                 // armazena os valores do que for clicado em no vetor de números selecionados.
                 this.sequenciaSelecionada.push(posicao + 1);
 
             }
             if (this.sequenciaSelecionada.length == this.qtdAposta.value) {
                 this.pushSequenciaSorteio();
-                let cont = this.compararVetores(this.sequenciaSelecionada, this.sequenciaSorteio);
+                this.cont = this.compararVetores(this.sequenciaSelecionada, this.sequenciaSorteio);
 
                 console.log(this.sequenciaSelecionada);
-                console.log(cont);
+                console.log(this.cont);
                 this.gameover = true;
-
+                console.log(`gameover: ${this.gameover}`)
 
             }
 
@@ -103,10 +104,27 @@ const sorteio = {
     },
 
     mostarResultados: function () {
-        if (this.gameover) return true;
-        
-        
+        let resultados = document.querySelector('.resultados')
+        if (this.gameover == true) {
+            resultados.innerHTML = `${this.nome.value}, você acertou ${this.cont} Números`
 
+            // mudar as cores dos números selecionados se acertou e do sorteio
+            for (i in this.sequenciaSorteio) {
+                if (this.sequenciaSelecionada.includes(this.sequenciaSorteio[i])) {
+                    
+                    document.querySelector(`.div${this.sequenciaSorteio[i]}`).style.backgroundColor = 'green'
+
+                } else {
+                    document.querySelector(`.div${this.sequenciaSorteio[i]}`).style.backgroundColor = 'red'
+
+                }
+
+            }
+
+        } else {
+            resultados.innerHTML = 'Você precisa completar todas as etapas antes de sortear!'
+
+        }
 
     }
 
