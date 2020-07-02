@@ -1,16 +1,19 @@
 
+body{
+    font-family: 'Holtwood One SC', serif;
+}
 .container {
-    background-color: rgba(7, 230, 230, 0.219);
+    background-color: rgba(42, 42, 42);
     border-radius: 1em;
     text-align: center;
 
 }
 
 label, .titulo, .btn {
-    font-family: 'Piedra', cursive;
-    color: rgba(4, 97, 4, 0.808);
+    color: rgb(241, 199, 89);
     text-align: center;
     margin-top: 1em;
+    
 
 }
 
@@ -21,4 +24,18 @@ label, .titulo, .btn {
     margin-right: auto;
     
 }
-
+.tabela{
+    color:rgb(255, 64, 61);
+    font-family: Helvetica, sans-serif;
+}
+.table-center{
+    margin-left: 50px;
+    margin-top: 30px;
+}
+hr{
+    background-color: white;
+    margin-right: 50px;
+}
+.resultados{
+    color: rgb(241, 199, 89);
+}
