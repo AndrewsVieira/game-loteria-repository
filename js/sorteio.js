@@ -62,7 +62,8 @@ const sorteio = {
         if (this.qtdAposta.value > 5 && this.qtdAposta.value < 16) {
             if (this.sequenciaSelecionada.length < this.qtdAposta.value) {
                 // a linha 58 é pra mudar a cor do background de cada bolinha ao serem cliccadas.
-                document.querySelector(`.div${posicao}`).style.backgroundColor = 'blue'
+                document.querySelector(`.div${posicao}`).style.backgroundColor = 'rgb(228, 129, 74)'
+                document.querySelector(`.div${posicao}`).style.color = 'white'
                 // armazena os valores do que for clicado em no vetor de números selecionados.
                 this.sequenciaSelecionada.push(posicao + 1);
 
@@ -70,12 +71,10 @@ const sorteio = {
             if (this.sequenciaSelecionada.length == this.qtdAposta.value) {
                 this.pushSequenciaSorteio();
                 this.cont = this.compararVetores(this.sequenciaSelecionada, this.sequenciaSorteio);
-
                 console.log(this.sequenciaSelecionada);
                 console.log(this.cont);
                 this.gameover = true;
                 console.log(`gameover: ${this.gameover}`)
-
             }
 
         } else {
@@ -118,11 +117,12 @@ const sorteio = {
             for (i in this.sequenciaSorteio) {
                 if (this.sequenciaSelecionada.includes(this.sequenciaSorteio[i])) {
 
-                    document.querySelector(`.div${this.sequenciaSorteio[i] - 1}`).style.backgroundColor = 'green'
+                    document.querySelector(`.div${this.sequenciaSorteio[i] - 1}`).style.backgroundColor = 'rgb(154, 203, 173)'
+                    
 
                 } else {
-                    document.querySelector(`.div${this.sequenciaSorteio[i] - 1}`).style.backgroundColor = 'red'
-
+                    document.querySelector(`.div${this.sequenciaSorteio[i] - 1}`).style.backgroundColor = 'rgb(222, 89, 90)'
+                    document.querySelector(`.div${this.sequenciaSorteio[i] - 1}`).style.color = 'white'
                 }
 
             }
@@ -163,9 +163,9 @@ const sorteio = {
             lucro = premioPorAcertos - custos
 
 
-            resultados.innerHTML += `Seu prêmio foi de R$${premioPorAcertos}.<br>`
-            resultados.innerHTML += `Seus custos foram R$${custos}.<br>`
-            resultados.innerHTML += `Seu resultado foi de R$${lucro}.`
+            resultados.innerHTML += `Seu prêmio foi de R$${premioPorAcertos.toFixed(2)}.<br>`
+            resultados.innerHTML += `Seus custos foram R$${custos.toFixed(2)}.<br>`
+            resultados.innerHTML += `Seu resultado foi de R$${lucro.toFixed(2)}.`
 
             this.gameover = 'Game is over.'
 
