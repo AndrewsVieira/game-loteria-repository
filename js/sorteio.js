@@ -1,11 +1,6 @@
 const sorteio = {
-    board: [],
-    sequenciaSorteio: [],
-    sequenciaSelecionada: [],
-    qtdAposta: document.getElementById('qtdaposta'),
-    nome: document.getElementById('nome'),
-    valorPremio: document.getElementById('valorpremio'),
-    cont: 0,
+    gameover: false,
+    containerElement: null,
 
     init: function (container) {
         this.containerElement = container;
@@ -13,6 +8,8 @@ const sorteio = {
     },
 
     // na função abaixo vamos preencher o objeto board, com os números de 1 a 60.
+    board: [],
+
     pushBoard: function () {
         for (var i = 1; i <= 60; i++) {
             this.board.push(i);
@@ -20,7 +17,10 @@ const sorteio = {
         }
 
     },
+    
     // na função abaixo vamos preencher o objeto sequenciaSorteio, com seis números.
+    sequenciaSorteio: [],
+
     pushSequenciaSorteio: function () {
         let max = 60;
         let min = 1;
@@ -36,8 +36,7 @@ const sorteio = {
 
     },
 
-    gameover: false,
-    containerElement: null,
+    
 
     // função para compar vetores 
     compararVetores: function (vetor1, vetor2) {
@@ -55,7 +54,11 @@ const sorteio = {
         return cont;
     },
 
-    // função que faz aparecer o cenário.
+    // função que faz aparecer o cenário, preenche o vetor com os números selecionados e compara o vetor de sorteio com o de selecionados
+
+    sequenciaSelecionada: [],
+    cont: 0,
+    
     makePlay: function (posicao) {
 
         if (this.gameover) return false;
@@ -83,12 +86,7 @@ const sorteio = {
 
     },
 
-    start: function () {
-        this.pushBoard();
-        this.draw();
-        this.gameover = false;
 
-    },
 
     content: '',
 
@@ -99,6 +97,17 @@ const sorteio = {
         }
 
         this.containerElement.innerHTML = this.content;
+
+    },
+
+    qtdAposta: document.getElementById('qtdaposta'),
+    nome: document.getElementById('nome'),
+    valorPremio: document.getElementById('valorpremio'),
+
+    start: function () {
+        this.pushBoard();
+        this.draw();
+        this.gameover = false;
 
     },
 
