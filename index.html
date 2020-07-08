@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-        <link href="https://fonts.googleapis.com/css2?family=Holtwood+One+SC&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Holtwood+One+SC&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/sorteio.css">
 
@@ -15,76 +15,81 @@
 </head>
 
 <body>
-   
-        <header class="container mt-5">
-            <h1 class="titulo mt-5">Mega-SENAI</h1>
-        </header>
 
-    <main> 
-    <div class="container mt-5">
-        <section>
-            <div class="form-group ">
-                <label for="nome">Seu nome: </label>
-                <input type="text" name="nome" id="nome" class="form-control" placeholder="" aria-describedby="helpId">
-                <label for="valorpremio">Valor do prêmio: </label>
-                <input type="text" name="nome" id="valorpremio" class="form-control" placeholder=""
-                    aria-describedby="helpId">
-                <label for="qtdaposta">Digite quantos números desejas apostar (ver preços na tabela abaixo): </label>
-                <input type="text" name="nome" id="qtdaposta" class="form-control" placeholder=""
-                    aria-describedby="helpId">
-            </div>
+    <header class="container mt-5">
+        <h1 class="titulo mt-5">Mega-SENAI</h1>
+    </header>
 
-            <div class="table-center ">
-                <hr>
-                <table class="table table-borderless  table-inverse table-responsive">
-                    <thead class="thead-inverse tabela">
-                        <tr>
-                            <th>Quantidade de números</th>
-                            <th>6</th>
-                            <th>7</th>
-                            <th>8</th>
-                            <th>9</th>
-                            <th>10</th>
-                            <th>11</th>
-                            <th>12</th>
-                            <th>13</th>
-                            <th>14</th>
-                            <th>15</th>
-                        </tr>
-                    </thead>
-                    
-                    <tbody class="tabela">
-                        <tr>
-                            <th scope="row">Valor da aposta (R$)</th>
-                            <th>3,50</th>
-                            <th>24,50</th>
-                            <th>98,00</th>
-                            <th>294,00</th>
-                            <th>735,00</th>
-                            <th>1.617,00</th>
-                            <th>3.234,00</th>
-                            <th>6.006,00</th>
-                            <th>10.510,50</th>
-                            <th>17.517,50</th>
-                        </tr>
-                    </tbody>
-                </table>
-                <hr>
-            </div>
+    <main>
+        <div class="container mt-5">
+            <section>
+                <div class="form-group ">
+                    <label for="nome">Seu nome: </label>
+                    <input type="text" name="nome" id="nome" class="form-control" aria-describedby="helpId">
+                    <label for="valorpremio">Valor do prêmio: </label>
+                    <input type="text" name="nome" id="valorpremio" class="form-control" placeholder=""
+                        aria-describedby="helpId">
+                    <label for="qtdaposta">Digite quantos números desejas apostar (ver preços na tabela abaixo):
+                    </label>
+                    <input type="text" name="nome" id="qtdaposta" class="form-control" placeholder=""
+                        aria-describedby="helpId">
+                </div>
 
-            <!--Não alterar a div.game-->
-            <div class="game mt-5"></div>
-            <div class="resultados mt-3"></div>
-            <!--Não alterar a div.game-->
+                <div class="table-center ">
+                    <hr>
+                    <table class="table table-borderless  table-inverse table-responsive">
+                        <thead class="thead-inverse tabela">
+                            <tr>
+                                <th>Quantidade de números</th>
+                                <th>6</th>
+                                <th>7</th>
+                                <th>8</th>
+                                <th>9</th>
+                                <th>10</th>
+                                <th>11</th>
+                                <th>12</th>
+                                <th>13</th>
+                                <th>14</th>
+                                <th>15</th>
+                            </tr>
+                        </thead>
 
+                        <tbody class="tabela">
+                            <tr>
+                                <th scope="row">Valor da aposta (R$)</th>
+                                <th>3,50</th>
+                                <th>24,50</th>
+                                <th>98,00</th>
+                                <th>294,00</th>
+                                <th>735,00</th>
+                                <th>1.617,00</th>
+                                <th>3.234,00</th>
+                                <th>6.006,00</th>
+                                <th>10.510,50</th>
+                                <th>17.517,50</th>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <hr>
+                </div>
 
-
-            <div><a id="btnSortear" onclick="sorteio.mostarResultados()" class="btn btn-danger" role="button">Sortear</a></div>
+                <!--Não alterar a div.game-->
+                <div class="game mt-5"></div>
+                <div class="resultados mt-3"></div>
+                <!--Não alterar a div.game-->
 
 
-        </section>
-    </div>
-    </main>  
+
+                <div style="padding-bottom: 80px;">
+                    <a id="btnSortear" onclick="sorteio.mostarResultados()" class="btn btn-danger"
+                        role="button">Sortear</a>
+                    <a id="btnSortear" onclick="atualizar()" class="btn btn-danger" role="button">Outro jogo</a>
+                </div>
+
+
+            </section>
+        </div>
+    </main>
 
 
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
@@ -96,10 +101,18 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
+    <script src="js/jquery/jquery.priceformat.min.js"></script>
     <script src="js/sorteio.js"></script>
     <script>
+        sorteio.nome.focus();
         sorteio.init(document.querySelector('.game'));
         sorteio.start();
+
+        function atualizar() {
+            window.location.reload();
+        }
+
+
     </script>
 </body>
 

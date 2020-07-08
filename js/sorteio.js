@@ -17,7 +17,7 @@ const sorteio = {
         }
 
     },
-    
+
     // na função abaixo vamos preencher o objeto sequenciaSorteio, com seis números.
     sequenciaSorteio: [],
 
@@ -36,7 +36,7 @@ const sorteio = {
 
     },
 
-    
+
 
     // função para compar vetores 
     compararVetores: function (vetor1, vetor2) {
@@ -58,7 +58,7 @@ const sorteio = {
 
     sequenciaSelecionada: [],
     cont: 0,
-    
+
     makePlay: function (posicao) {
 
         if (this.gameover) return false;
@@ -115,19 +115,27 @@ const sorteio = {
         let resultados = document.querySelector('.resultados')
         let custos = 0
         let lucro = 0
-        
+
         this.valorPremio = this.valorPremio.value
-        let premioPorAcertos = (this.valorPremio * this.cont)/6
+        let premioPorAcertos = (this.valorPremio * this.cont) / 6
 
         if (this.gameover == true) {
-            resultados.innerHTML = `${this.nome.value}, você acertou ${this.cont} Números<br>`
+            if (this.cont > 0) {
+                if (this.cont == 1) {
+                    resultados.innerHTML = `${this.nome.value}, você acertou ${this.cont} Número<br>`
+                } else {
+                    resultados.innerHTML = `${this.nome.value}, você acertou ${this.cont} Números<br>`
+                }
+            } else {
+                resultados.innerHTML = `${this.nome.value}, você não teve sorte desta vez!!<br>`
+            }
 
             // mudar as cores dos números selecionados se acertou e do sorteio
             for (i in this.sequenciaSorteio) {
                 if (this.sequenciaSelecionada.includes(this.sequenciaSorteio[i])) {
 
                     document.querySelector(`.div${this.sequenciaSorteio[i] - 1}`).style.backgroundColor = 'rgb(154, 203, 173)'
-                    
+
 
                 } else {
                     document.querySelector(`.div${this.sequenciaSorteio[i] - 1}`).style.backgroundColor = 'rgb(222, 89, 90)'
@@ -171,10 +179,19 @@ const sorteio = {
 
             lucro = premioPorAcertos - custos
 
+            //deixar o texto em moeda brasileira
+            custos = custos.toLocaleString('pt-br', { style: 'currency', currency: 'BRL' });
+            premioPorAcertos = premioPorAcertos.toLocaleString('pt-br', { style: 'currency', currency: 'BRL' });
+            lucro = lucro.toLocaleString('pt-br', { style: 'currency', currency: 'BRL' });
 
-            resultados.innerHTML += `Seu prêmio foi de R$${premioPorAcertos.toFixed(2)}.<br>`
-            resultados.innerHTML += `Seus custos foram R$${custos.toFixed(2)}.<br>`
-            resultados.innerHTML += `Seu resultado foi de R$${lucro.toFixed(2)}.`
+            if (this.cont == 0) {
+                resultados.innerHTML += `Seus custos foram de R$${custos}.<br>`
+
+            } else {
+                resultados.innerHTML += `Seu prêmio foi de ${premioPorAcertos}.<br>`
+                resultados.innerHTML += `Seus custos foram ${custos}.<br>`
+                resultados.innerHTML += `Seu resultado foi de ${lucro}.`
+            }
 
             this.gameover = 'Game is over.'
 
@@ -183,7 +200,7 @@ const sorteio = {
             resultados.innerHTML = 'Você precisa completar todas as etapas antes de sortear!'
 
         }
-    }
+    },
 
 }
 
