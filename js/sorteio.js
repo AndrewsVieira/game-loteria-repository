@@ -38,7 +38,7 @@ const sorteio = {
 
 
 
-    // função para compar vetores 
+    // função para comparar vetores 
     compararVetores: function (vetor1, vetor2) {
         let numSelecionados = vetor1;
         let numSorteados = vetor2;
@@ -96,7 +96,7 @@ const sorteio = {
             this.content += `<div onclick ="sorteio.makePlay(${i})" class="div${i}">${this.board[i]}</div>`
         }
 
-        this.containerElement.innerHTML = this.content;
+        this.containerElement.innerHTML += this.content;
 
     },
 
@@ -117,17 +117,30 @@ const sorteio = {
         let lucro = 0
 
         this.valorPremio = this.valorPremio.value
-        let premioPorAcertos = (this.valorPremio * this.cont) / 6
+        let premioPorAcertos = 0;
+
+        // Prêmio somente se acertar a partir da quadra
+        if (this.cont >= 4) {
+            premioPorAcertos = (this.valorPremio * this.cont) / 6
+        }
 
         if (this.gameover == true) {
+            this.sequenciaSelecionada = this.sequenciaSelecionada.sort(function (a, b) { return a - b }); // função para deixar o vetor em ordem crescente, é chamada de "The Compare Function" pelo w3schools
+            this.sequenciaSorteio = this.sequenciaSorteio.sort(function (a, b) { return a - b });
+
+            resultados.innerHTML += `Sequência apostada: ${this.sequenciaSelecionada}<br>`;
+            resultados.innerHTML += `Sequência sorteada: ${this.sequenciaSorteio}<br><br>`;
+            resultados.innerHTML += `Os acertos estão em <p class = "hit-color">verde</p> e os erros em <p class = "error-color">vermelho</p>`;
+
+
             if (this.cont > 0) {
                 if (this.cont == 1) {
-                    resultados.innerHTML = `${this.nome.value}, você acertou ${this.cont} Número<br>`
+                    resultados.innerHTML += `${this.nome.value}, você acertou ${this.cont} Número<br>`
                 } else {
-                    resultados.innerHTML = `${this.nome.value}, você acertou ${this.cont} Números<br>`
+                    resultados.innerHTML += `${this.nome.value}, você acertou ${this.cont} Números<br>`
                 }
             } else {
-                resultados.innerHTML = `${this.nome.value}, você não teve sorte desta vez!!<br>`
+                resultados.innerHTML += `${this.nome.value}, você não teve sorte desta vez!!<br>`
             }
 
             // mudar as cores dos números selecionados se acertou e do sorteio
@@ -177,15 +190,16 @@ const sorteio = {
 
             }
 
+            
             lucro = premioPorAcertos - custos
-
+            
             //deixar o texto em moeda brasileira
             custos = custos.toLocaleString('pt-br', { style: 'currency', currency: 'BRL' });
             premioPorAcertos = premioPorAcertos.toLocaleString('pt-br', { style: 'currency', currency: 'BRL' });
             lucro = lucro.toLocaleString('pt-br', { style: 'currency', currency: 'BRL' });
 
-            if (this.cont == 0) {
-                resultados.innerHTML += `Seus custos foram de R$${custos}.<br>`
+            if (this.cont <= 4) {
+                resultados.innerHTML += `Seus custos foram de ${custos}.<br>`
 
             } else {
                 resultados.innerHTML += `Seu prêmio foi de ${premioPorAcertos}.<br>`
@@ -197,7 +211,7 @@ const sorteio = {
 
 
         } else if (this.gameover == false) {
-            resultados.innerHTML = 'Você precisa completar todas as etapas antes de sortear!'
+            resultados.innerHTML += 'Você precisa completar todas as etapas antes de sortear!'
 
         }
     },

@@ -41,3 +41,9 @@ hr{
 .resultados{
     color: rgb(241, 199, 89);
 }
+.hit-color {
+    color: rgb(154, 203, 173);
+}
+.error-color{
+    color: rgb(222, 89, 90);
+}
